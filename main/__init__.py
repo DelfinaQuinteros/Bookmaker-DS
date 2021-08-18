@@ -8,8 +8,6 @@ from flask_sqlalchemy import SQLAlchemy
 
 api = Api()
 db = SQLAlchemy()
-jwt = JWTManager()
-mailsender = Mail()
 
 
 def create_app():
@@ -22,24 +20,12 @@ def create_app():
     app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:////' + os.getenv('DATABASE_PATH') + os.getenv('DATABASE_NAME')
     db.init_app(app)
-    import main.resources as resources
-    api.add_resource(resources.BolsonesResource, '/bolsones')
-    api.add_resource(resources.BolsonResource, '/bolson/<id>')
-    api.add_resource(resources.BolsonesVentaResource, '/bolsonesventa')
-    api.add_resource(resources.BolsonVentaResource, '/bolsonventa/<id>')
-    api.add_resource(resources.BolsonesPendientesResource, '/bolsonespendientes')
-    api.add_resource(resources.BolsonPendienteResource, '/bolsonpendiente/<id>')
-    api.add_resource(resources.BolsonesPreviosResource, '/bolsonesprevios')
-    api.add_resource(resources.BolsonPrevioResource, '/bolsonprevio/<id>')
-    api.add_resource(resources.ProductosResource, '/productos')
-    api.add_resource(resources.ProductoResource, '/producto/<id>')
-    api.add_resource(resources.ComprasResource, '/compras')
-    api.add_resource(resources.CompraResource, '/compra/<id>')
+    import main.controllers as resources
     api.add_resource(resources.ClientesResource, '/clientes')
     api.add_resource(resources.ClienteResource, '/cliente/<id>')
-    api.add_resource(resources.ProveedoresResource, '/proveedores')
-    api.add_resource(resources.ProveedorResource, '/proveedor/<id>')
-    api.add_resource(resources.ProductosBolsonesResource, '/productos-bolsones')
-    api.add_resource(resources.ProductoBolsonResource, '/producto-bolson/<id>')
+    api.add_resource(resources.EquiposResource, '/equipos')
+    api.add_resource(resources.EquipoResource, '/equipo/<id>')
+    api.add_resource(resources.EmpresasResource, '/empresas')
+    api.add_resource(resources.EmpresaResource, '/empresa/<id>')
     api.init_app(app)
 
