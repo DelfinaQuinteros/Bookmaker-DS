@@ -1,6 +1,6 @@
 from flask_restful import Resource
 from flask import request, jsonify
-from main import db
+from .. import db
 from main.models import EquipoModels
 
 class Equipos(Resource):
