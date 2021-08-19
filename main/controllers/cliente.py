@@ -2,6 +2,7 @@ from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
 from main.models import ClienteModels
+from main.map import Cliente_Schema
 
 class Clientes(Resource):
     @staticmethod
@@ -16,12 +17,8 @@ class Clientes(Resource):
                     page = int(value)
                 if key == "per_page":
                     per_page = int(value)
-        clientes = clientes.paginate(page, per_page, True, 30)
-        return jsonify({'clientes': [cliente.to_json() for cliente in clientes.items],
-                        'total': clientes.total,
-                        'page': clientes.page,
-                        'pages': clientes.pages
-                        })
+        #clientes = clientes.paginate(page, per_page, True, 30)
+        return cliente_schema.dump(cliente.all(), many=True)
 
     def post(self):
         cliente = ClienteModels.from_json(request.get_json())
@@ -32,12 +29,12 @@ class Clientes(Resource):
         except:
             return '', 404
 
-
+cliente_schema = Cliente_Schema()
 class Cliente(Resource):
     @staticmethod
     def get(self, id):
         cliente = db.session.query(ClienteModels).get_or_404(id)
-        return cliente.to_json()
+        return cliente_schema.dump(cliente)
 
     def delete(id):
         cliente = db.session.query(ClienteModels).get_or_404(id)
@@ -57,6 +54,6 @@ class Cliente(Resource):
         try:
             db.session.add(cliente)
             db.session.commit()
-            return cliente.to_json(), 201
+            return cliente_schema.dump(cliente), 201
         except:
             return '', 404

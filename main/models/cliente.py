@@ -1,10 +1,17 @@
 from .. import db
 
 class Cliente(db.Model):
+    __tablename__ = 'clientes'
     __id = db.Column('id',db.Integer, primary_key=True)
     __nombre = db.Column('nombre',db.String(100), nullable=False)
     __apellido = db.Column('apellido',db.String(100), nullable=False)
     __email = db.Column('mail',db.String(120), nullable=False)
+
+    def __init__(self, id, nombre, apellido, email):
+        self.__id = id
+        self.__nombre = nombre
+        self.__apellido = apellido
+        self.__email = email
 
     def __repr__(self):
         return '<Cliente: %r %r %r >' % (self.__nombre, self.__apellido, self.__email)
@@ -76,5 +83,5 @@ class Cliente(db.Model):
         return Cliente(id=id,
                        nombre=nombre,
                        apellido=apellido,
-                       email=email,
+                       email=email
                        )

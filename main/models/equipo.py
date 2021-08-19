@@ -1,10 +1,11 @@
 from .. import db
 
 class Equipo(db.Model):
-    __id = db.Column(db.Integer, primary_key=True)
-    __nombre = db.Column(db.String(100), nullable=False)
-    __escudo = db.Column(db.String(100), nullable=False)
-    __pais = db.Column(db.String(100), nullable=False)
+    __tablename__ = 'equipos'
+    __id = db.Column('id', db.Integer, primary_key=True)
+    __nombre = db.Column('nombre', db.String(100), nullable=False)
+    __escudo = db.Column('escudo', db.String(100), nullable=False)
+    __pais = db.Column('pais', db.String(100), nullable=False)
 
     def __repr__(self):
         return '<Equipo: %r %r %r >' % (self.__nombre, self.__escudo, self.__pais)
