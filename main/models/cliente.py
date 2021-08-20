@@ -7,8 +7,7 @@ class Cliente(db.Model):
     __apellido = db.Column('apellido',db.String(100), nullable=False)
     __email = db.Column('mail',db.String(120), nullable=False)
 
-    def __init__(self, id, nombre, apellido, email):
-        self.__id = id
+    def __init__(self, nombre, apellido, email):
         self.__nombre = nombre
         self.__apellido = apellido
         self.__email = email
@@ -64,24 +63,3 @@ class Cliente(db.Model):
     def email(self):
         del self.__email
 
-
-    def to_json(self):
-        cliente_json = {
-            'id': self.__id,
-            'nombre': str(self.__nombre),
-            'apellido': str(self.__apellido),
-            'email': str(self.__email),
-        }
-        return cliente_json
-
-    @staticmethod
-    def from_json(cliente_json):
-        id = cliente_json.get('id')
-        nombre = cliente_json.get('nombre')
-        apellido = cliente_json.get('apellido')
-        email = cliente_json.get('email')
-        return Cliente(id=id,
-                       nombre=nombre,
-                       apellido=apellido,
-                       email=email
-                       )

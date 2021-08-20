@@ -4,39 +4,28 @@ from .. import db
 from main.models import ClienteModels
 from main.map import Cliente_Schema
 
+cliente_schema = Cliente_Schema()
 class Clientes(Resource):
-    @staticmethod
-    def get():
-        page = 1
-        per_page = 10
+    def get(self):
         clientes = db.session.query(ClienteModels)
-        if request.get_json():
-            filtro = request.get_json().items()
-            for key, value in filtro:
-                if key == "page":
-                    page = int(value)
-                if key == "per_page":
-                    per_page = int(value)
-        #clientes = clientes.paginate(page, per_page, True, 30)
-        return cliente_schema.dump(cliente.all(), many=True)
+        return cliente_schema.dump(clientes, many=True)
 
     def post(self):
-        cliente = ClienteModels.from_json(request.get_json())
+        cliente = cliente_schema.load(request.get_json())
         try:
             db.session.add(cliente)
             db.session.commit()
-            return cliente.to_json(), 201
+            return cliente_schema.dump(cliente), 201
         except:
             return '', 404
 
-cliente_schema = Cliente_Schema()
+
 class Cliente(Resource):
-    @staticmethod
     def get(self, id):
         cliente = db.session.query(ClienteModels).get_or_404(id)
         return cliente_schema.dump(cliente)
 
-    def delete(id):
+    def delete(self, id):
         cliente = db.session.query(ClienteModels).get_or_404(id)
         try:
             db.session.delete(cliente)
@@ -44,7 +33,6 @@ class Cliente(Resource):
             return '', 204
         except:
             return '', 404
-
 
     def put(self, id):
         cliente = db.session.query(ClienteModels).get_or_404(id)
@@ -57,3 +45,5 @@ class Cliente(Resource):
             return cliente_schema.dump(cliente), 201
         except:
             return '', 404
+
+

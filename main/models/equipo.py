@@ -7,6 +7,11 @@ class Equipo(db.Model):
     __escudo = db.Column('escudo', db.String(100), nullable=False)
     __pais = db.Column('pais', db.String(100), nullable=False)
 
+    def __init__(self, nombre, escudo, pais):
+        self.__nombre = nombre
+        self.__escudo = escudo
+        self.__pais = pais
+
     def __repr__(self):
         return '<Equipo: %r %r %r >' % (self.__nombre, self.__escudo, self.__pais)
 
@@ -57,26 +62,3 @@ class Equipo(db.Model):
     @pais.deleter
     def pais(self):
         del self.__pais
-
-
-    def to_json(self):
-        equipo_json = {
-            'id': self.__id,
-            'nombre': str(self.__nombre),
-            'escudo': str(self.__escudo),
-            'pais': str(self.__pais),
-        }
-        return equipo_json
-
-    @staticmethod
-    def from_json(equipo_json):
-        id = equipo_json.get('id')
-        nombre = equipo_json.get('nombre')
-        escudo = equipo_json.get('escudo')
-        pais = equipo_json.get('pais')
-        return Equipo(id=id,
-                       nombre=nombre,
-                       escudo=escudo,
-                       pais=pais,
-                       )
-

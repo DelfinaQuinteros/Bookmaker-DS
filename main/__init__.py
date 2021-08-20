@@ -28,4 +28,4 @@ def create_app():
     api.add_resource(resources.EmpresasResource, '/empresas')
     api.add_resource(resources.EmpresaResource, '/empresa/<id>')
     api.init_app(app)
-
+    return app

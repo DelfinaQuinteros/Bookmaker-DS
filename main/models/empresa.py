@@ -6,6 +6,10 @@ class Empresa(db.Model):
     __razon_social = db.Column('razon social',db.String(100), nullable=False)
     __email = db.Column('email',db.String(120), nullable=False)
 
+    def __init__(self, razon_social, email):
+        self.__razon_social = razon_social
+        self.__email = email
+
     def __repr__(self):
         return '<Empresa: %r %r >' % (self.__razon_social, self.__email)
 
@@ -45,21 +49,3 @@ class Empresa(db.Model):
     def email(self):
         del self.__email
 
-
-    def to_json(self):
-        empresa_json = {
-            'id': self.__id,
-            'razon_social': str(self.__razon_social),
-            'email': str(self.__email),
-        }
-        return eempresa_json
-
-    @staticmethod
-    def from_json(empresa_json):
-        id = empresa_json.get('id')
-        razon_social = empresa_json.get('razon_social')
-        email = empresa_json.get('email')
-        return Empresa(id=id,
-                      razon_social=razon_social,
-                      email=email,
-                      )
