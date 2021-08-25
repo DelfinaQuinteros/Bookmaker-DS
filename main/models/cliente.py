@@ -1,4 +1,15 @@
 from .. import db
+<<<<<<< HEAD
+from sqlalchemy.ext.hybrid import hybrid_property
+
+
+class Cliente(db.Model):
+    __tablename__ = 'clientes'
+    __id = db.Column('id', db.Integer, primary_key=True)
+    __nombre = db.Column('nombre', db.String(100), nullable=False)
+    __apellido = db.Column('apellido', db.String(100), nullable=False)
+    __email = db.Column('email', db.String(120), nullable=False)
+=======
 
 class Cliente(db.Model):
     __tablename__ = 'clientes'
@@ -6,6 +17,7 @@ class Cliente(db.Model):
     __nombre = db.Column('nombre',db.String(100), nullable=False)
     __apellido = db.Column('apellido',db.String(100), nullable=False)
     __email = db.Column('mail',db.String(120), nullable=False)
+>>>>>>> 0ffbba7845137d67670098c4a015d9dcbc70648c
 
     def __init__(self, nombre, apellido, email):
         self.__nombre = nombre
@@ -14,11 +26,19 @@ class Cliente(db.Model):
 
     def __repr__(self):
         return '<Cliente: %r %r %r >' % (self.__nombre, self.__apellido, self.__email)
+<<<<<<< HEAD
+
+    @hybrid_property
+    def id(self):
+        return self.__id
+
+=======
 
     @property
     def id(self):
         return self.__id
 
+>>>>>>> 0ffbba7845137d67670098c4a015d9dcbc70648c
     @id.setter
     def id(self, id):
         self.__id = id
@@ -27,7 +47,11 @@ class Cliente(db.Model):
     def id(self):
         del self.__id
 
+<<<<<<< HEAD
+    @hybrid_property
+=======
     @property
+>>>>>>> 0ffbba7845137d67670098c4a015d9dcbc70648c
     def nombre(self):
         return self.__nombre
 
@@ -39,7 +63,11 @@ class Cliente(db.Model):
     def nombre(self):
         del self.__nombre
 
+<<<<<<< HEAD
+    @hybrid_property
+=======
     @property
+>>>>>>> 0ffbba7845137d67670098c4a015d9dcbc70648c
     def apellido(self):
         return self.__apellido
 
@@ -51,7 +79,11 @@ class Cliente(db.Model):
     def apellido(self):
         del self.__apellido
 
+<<<<<<< HEAD
+    @hybrid_property
+=======
     @property
+>>>>>>> 0ffbba7845137d67670098c4a015d9dcbc70648c
     def email(self):
         return self.__email
 
