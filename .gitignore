@@ -1,3 +1,12 @@
+/.idea
+/bin
+/include
+/lib
+/lib64
+/share
+pyvenv.cfg
+.env
+**/__pycache__
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
