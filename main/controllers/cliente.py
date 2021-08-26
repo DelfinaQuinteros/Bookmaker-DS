@@ -7,8 +7,6 @@ from main.map import ClienteFiltros
 
 
 cliente_schema = Cliente_Schema()
-
-
 class Clientes(Resource):
     def get(self):
         filtros = request.data
@@ -16,7 +14,7 @@ class Clientes(Resource):
         filtrar_clientes = ClienteFiltros(clientes)
         for key, value in request.get_json().items():
             consulta = filtrar_clientes.aplicar_filtro(key, value)
-        return cliente_schema.dump(consulta.all(), many=True)
+            return cliente_schema.dump(consulta.all(), many=True)
 
 
     def post(self):
