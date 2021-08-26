@@ -3,6 +3,7 @@ from flask import request, jsonify
 from .. import db
 from main.models import ClienteModels
 from main.map import Cliente_Schema
+<<<<<<< HEAD
 from main.map import ClienteFiltros
 
 
@@ -17,6 +18,14 @@ class Clientes(Resource):
         for key, value in request.get_json().items():
             consulta = filtrar_clientes.aplicar_filtro(key, value)
         return cliente_schema.dump(consulta.all(), many=True)
+=======
+
+cliente_schema = Cliente_Schema()
+class Clientes(Resource):
+    def get(self):
+        clientes = db.session.query(ClienteModels)
+        return cliente_schema.dump(clientes, many=True)
+>>>>>>> 0ffbba7845137d67670098c4a015d9dcbc70648c
 
     def post(self):
         cliente = cliente_schema.load(request.get_json())
@@ -53,3 +62,8 @@ class Cliente(Resource):
             return cliente_schema.dump(cliente), 201
         except:
             return '', 404
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 0ffbba7845137d67670098c4a015d9dcbc70648c
