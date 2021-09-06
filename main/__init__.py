@@ -27,5 +27,6 @@ def create_app():
     api.add_resource(resources.EquipoResource, '/equipo/<id>')
     api.add_resource(resources.EmpresasResource, '/empresas')
     api.add_resource(resources.EmpresaResource, '/empresa/<id>')
+    api.add_resource(resources.ApuestasResource, '/apuestas')
     api.init_app(app)
     return app

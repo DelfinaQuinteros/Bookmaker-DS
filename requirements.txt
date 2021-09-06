@@ -4,4 +4,4 @@ flask-restful
 flask_sqlalchemy
 flask_marshmallow
 sqlalchemy-filters
-marshmallow-sqlalchemy
+Faker
