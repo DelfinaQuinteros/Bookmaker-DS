@@ -7,6 +7,7 @@ from main.map import ClienteFiltros
 
 
 cliente_schema = Cliente_Schema()
+
 class Clientes(Resource):
     def get(self):
         filtros = request.data

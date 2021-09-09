@@ -27,7 +27,7 @@ def load_equipos():
     with open('./docs/equipo.csv', encoding='utf-8') as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
-            equipo = EquipoModel(nombre=row[0], escudo=row[1], pais=row[2], puntaje=float(row[3]))
+            equipo = EquipoModels(nombre=row[0], escudo=row[1], pais=row[2], puntaje=float(row[3]))
 
             db.session.add(equipo)
 

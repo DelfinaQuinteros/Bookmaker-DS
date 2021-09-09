@@ -1,2 +1,1 @@
-
-from .partidos import PartidoService
+from .partido import PartidoServices as PartidoServices
