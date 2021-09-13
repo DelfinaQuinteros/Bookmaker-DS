@@ -1,8 +1,9 @@
 @startuml
 actor Admin
 boundary ClienteControllers
-boundary ClientesControllers
 participant Cliente_Schema
+participant Cliente_Services
+participant Respositories
 entity ClienteModels
 database data
 
@@ -88,6 +89,7 @@ ClientesControllers <- Cliente_Schema: Json
 deactivate Cliente_Schema
 Admin <- ClientesControllers: Json
 deactivate ClientesControllers
+
 @enduml
 
 

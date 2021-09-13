@@ -5,5 +5,5 @@ from main.services import PartidoServices
 
 class Apuestas(Resource):
     def get(self):
-        services = PartidoService()
+        services = PartidoServices()
         return services.obtener_partidos_no_finalizados
