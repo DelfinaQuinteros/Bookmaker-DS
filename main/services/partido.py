@@ -1,7 +1,9 @@
 from .. import db
 from main.models import PartidoModels
+from main.repositories import PartidoRepositorio
 
-repositorio = Repositorio(PartidoModels)
+
+repositorio = PartidoRepositorio
 class PartidoServices:
     def obtener_partidos_no_finalizados(self):
         partidos = db.session.query(PartidoModels).filter('finalizado' == False).all()

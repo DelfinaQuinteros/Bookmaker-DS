@@ -8,6 +8,7 @@ from main.services import EmpresaServices
 empresa_schema = Empresa_Schema()
 empresa_services = EmpresaServices()
 
+
 class Empresas(Resource):
     def get(self):
         return empresa_service.dump(empresa_services.obtener_empresas(), many=True)
@@ -24,8 +25,7 @@ class Empresas(Resource):
 
 class Empresa(Resource):
     def get(self, id):
-        empresa = db.session.query(EmpresaModels).get_or_404(id)
-        return empresa_schema.dump(empresa)
+        return empresa_schema.dump(empresa_services.obtener_empresa_id(id))
 
     def delete(self, id):
         empresa = db.session.query(EmpresaModels).get_or_404(id)
@@ -44,7 +44,6 @@ class Empresa(Resource):
         try:
             db.session.add(cliente)
             db.session.commit()
-            return empresa_schema .dump(empresa), 201
+            return empresa_schema.dump(empresa), 201
         except:
             return '', 404
-
