@@ -1,5 +1,4 @@
 import logging
-from app import app
 from flask_restful import Resource
 from flask import request, jsonify
 from .. import db
@@ -8,6 +7,7 @@ from main.map import Equipo_Schema
 
 
 equipo_schema = Equipo_Schema()
+logger = logging.getLogger(__name__)
 
 
 class Equipos(Resource):
@@ -28,7 +28,7 @@ class Equipos(Resource):
 class Equipo(Resource):
     def get(self, id):
         equipo = db.session.query(EquipoModels).get_or_404(id)
-        app.logger.info("Equipo: %s", equipo)
+        logger.debug("Equipo: %s", equipo)
         return equipo_schema.dump(equipo)
 
     def delete(self, id):

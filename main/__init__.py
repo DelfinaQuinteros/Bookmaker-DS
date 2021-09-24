@@ -7,7 +7,7 @@ from flask_restful import Api
 
 from flask_sqlalchemy import SQLAlchemy
 
-logging.basicConfig(level=logging.DEBUG, format=f'%(asctime)s%(levelname)s%(name)s%(threadName)s:%(message)s')
+logging.basicConfig(level=logging.INFO, format=f'%(asctime)s%(levelname)s%(name)s%(threadName)s : %(message)s')
 
 api = Api()
 db = SQLAlchemy()
