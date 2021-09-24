@@ -1,0 +1,21 @@
+2021-09-23 19:56:11.455372INFOvalor de variable223
+2021-09-23 19:56:11.457488WARNvalor de variable223
+2021-09-23 19:56:11.457722ERRORvalor de variable223
+('2021-09-23 19:56:11.457956', 'DEB', 'valor de variable223', '\n')2021-09-23 19:57:10.541013INFOvalor de variable 223
+2021-09-23 19:57:10.544085WARNvalor de variable 223
+2021-09-23 19:57:10.544124ERRORvalor de variable 223
+('2021-09-23 19:57:10.544143', 'DEB', 'valor de variable 223', '\n')2021-09-23 19:57:20.540934INFOvalor de variable 223
+2021-09-23 19:57:20.543521WARNvalor de variable 223
+2021-09-23 19:57:20.543789ERRORvalor de variable 223
+('2021-09-23 19:57:20.544007', 'DEB', 'valor de variable 223', '\n')2021-09-23 19:58:11.964537INFOvalor de variable 223
+2021-09-23 19:58:11.964971WARNvalor de variable 223
+2021-09-23 19:58:11.965206ERRORvalor de variable 223
+('2021-09-23 19:58:11.965423', 'DEB', 'valor de variable 223', '\n')
+
+2021-09-23 20:04:08.983362INFOvalor de variable 223
+2021-09-23 20:04:08.983930WARNvalor de variable 223
+2021-09-23 20:04:08.984328ERRORvalor de variable 223
+('2021-09-23 20:04:08.984599', 'DEB', 'valor de variable 223', '\n')2021-09-24 17:38:29.247881INFOvalor de variable 223
+2021-09-24 17:38:29.248443WARNvalor de variable 223
+2021-09-24 17:38:29.248468ERRORvalor de variable 223
+('2021-09-24 17:38:29.248485', 'DEB', 'valor de variable 223', '\n')

@@ -5,7 +5,7 @@ repositorio = EmpresaRepositorio
 
 class EmpresaServices:
     def obtener_empresas(self):
-        return repositorio.obtener_todos()
+        return repositorio.find_all()
 
-    def obtener_empresa_id(self):
-        return repositorio.obtener_por_id(id)
+    def obtener_empresa_id(self, id):
+        return repositorio.find_one(id)

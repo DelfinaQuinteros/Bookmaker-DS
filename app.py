@@ -16,10 +16,9 @@ from datetime import datetime
 def load_clientes():
     fake = Faker('es_ES')
     for _ in range(10):
-        cliente = ClienteModels(nombre=fake.first_name(), apellido=fake.name(), email=fake.email())
+        cliente = ClienteModels(nombre=fake.first_name(), apellido=fake.name(), email=fake.email(), activado=fake.boolean())
         db.session.add(cliente)
         db.session.commit()
-
     #db.session.close()
 
 
@@ -28,11 +27,10 @@ def load_equipos():
         csv_reader = csv.reader(csv_file, delimiter=',')
         for row in csv_reader:
             equipo = EquipoModels(nombre=row[0], escudo=row[1], pais=row[2], puntaje=float(row[3]))
-
             db.session.add(equipo)
-
             db.session.commit()
         #db.session.close()
+
 
 def load_partidos():
     formato = "%d/%m/%Y %H:%M"

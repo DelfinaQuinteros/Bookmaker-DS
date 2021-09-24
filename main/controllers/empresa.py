@@ -11,7 +11,7 @@ empresa_services = EmpresaServices()
 
 class Empresas(Resource):
     def get(self):
-        return empresa_service.dump(empresa_services.obtener_empresas(), many=True)
+        return empresa_schema.dump(empresa_services.obtener_empresas(), many=True)
 
     def post(self):
         empresas = empresa_schema.load(request.get_json())
@@ -25,7 +25,7 @@ class Empresas(Resource):
 
 class Empresa(Resource):
     def get(self, id):
-        return empresa_schema.dump(empresa_services.obtener_empresa_id(id))
+        return empresa_schema.dump(empresa_services.obtener_empresa_id())
 
     def delete(self, id):
         empresa = db.session.query(EmpresaModels).get_or_404(id)
@@ -42,7 +42,7 @@ class Empresa(Resource):
         for key, value in data:
             setattr(empresa, key, value)
         try:
-            db.session.add(cliente)
+            db.session.add(empresa)
             db.session.commit()
             return empresa_schema.dump(empresa), 201
         except:

@@ -1,10 +1,13 @@
 import os
+import logging
 from flask import Flask
 from dotenv import load_dotenv
 from flask_restful import Api
 
 
 from flask_sqlalchemy import SQLAlchemy
+
+logging.basicConfig(level=logging.DEBUG, format=f'%(asctime)s%(levelname)s%(name)s%(threadName)s:%(message)s')
 
 api = Api()
 db = SQLAlchemy()
