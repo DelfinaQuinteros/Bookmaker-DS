@@ -1,5 +1,5 @@
 from flask_restful import Resource
-from flask import request, jsonify
+from flask import request
 from .. import db
 from main.models import EmpresaModels
 from main.map import Empresa_Schema
@@ -25,7 +25,7 @@ class Empresas(Resource):
 
 class Empresa(Resource):
     def get(self, id):
-        return empresa_schema.dump(empresa_services.obtener_empresa_id())
+        return empresa_schema.dump(empresa_services.obtener_empresa_id(id))
 
     def delete(self, id):
         empresa = db.session.query(EmpresaModels).get_or_404(id)

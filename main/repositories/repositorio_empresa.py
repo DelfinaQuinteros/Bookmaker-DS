@@ -9,7 +9,7 @@ class EmpresaRepositorio(Create, Read, Update, Delete):
         self.__modelo = EmpresaModels
 
     def find_all(self):
-        objetos = db.session.query(self.__modelo).filter(self.modelo.__activado == True).all()
+        objetos = db.session.query(self.__modelo).filter(self.__modelo.__activado == True).all()
         return objetos
 
     def find_one(self, id):

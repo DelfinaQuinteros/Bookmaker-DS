@@ -1,7 +1,7 @@
-from main.models import EmpresaModels
 from main.repositories import EmpresaRepositorio
 
 repositorio = EmpresaRepositorio
+
 
 class EmpresaServices:
     def obtener_empresas(self):

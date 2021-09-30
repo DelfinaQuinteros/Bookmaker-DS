@@ -11,4 +11,4 @@ class PartidoServices:
         return partidos
 
     def obtener_partidos(self):
-        return repositorio.obtener_todos()
+        return repositorio.find_all()
