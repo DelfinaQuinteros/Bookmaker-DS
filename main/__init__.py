@@ -7,7 +7,7 @@ import logging
 
 api = Api()
 db = SQLAlchemy()
-logging.basicConfig(level=logging.INFO, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
+# logging.basicConfig(level=logging.INFO, format=f'%(asctime)s %(levelname)s %(name)s %(threadName)s : %(message)s')
 
 def create_app():
     app = Flask(__name__)
@@ -30,6 +30,8 @@ def create_app():
     api.add_resource(resources.EquiposResource, '/equipos')
     api.add_resource(resources.EquipoResource, '/equipo/<id>')
     api.add_resource(resources.ApuestasResource, '/apuestas')
+    api.add_resource(resources.PartidosResource, '/partidos')
+    api.add_resource(resources.PartidoResource, '/partido/<id>')
     api.init_app(app)
 
     return app

@@ -14,4 +14,3 @@ class CuotaSchema(Schema):
         return CuotaModel(**data)
 
 
-    

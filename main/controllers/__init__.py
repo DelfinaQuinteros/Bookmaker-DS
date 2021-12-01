@@ -5,3 +5,5 @@ from .empresa import Empresas as EmpresasResource
 from .equipo import Equipo as EquipoResource
 from .equipo import Equipos as EquiposResource
 from .apuesta import Apuestas as ApuestasResource
+from .partidos import Partido as PartidoResource
+from .partidos import Partidos as PartidosResource

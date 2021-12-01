@@ -50,13 +50,13 @@ def load_partidos():
 
             partido.cuota = cuota
             db.session.add(partido)
-
+  
             db.session.commit()
         #db.sesion.close()
 
 
 if __name__ == '__main__':
-    db.drop_all()
+    # db.drop_all()
     db.create_all()
     load_equipos()
     load_clientes()
