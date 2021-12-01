@@ -1,14 +1,14 @@
-from marshmallow import Schema, fields, validate, post_load
-from main.models import EquipoModels
+from marshmallow import Schema, fields, post_load
+from main.models import EquipoModel
 
 
-class Equipo_Schema(Schema):
-    id = fields.Integer(dump_only=True)
+class EquipoSchema(Schema):
+    id = fields.Int(dump_only=True)
     nombre = fields.String(required=True)
     escudo = fields.String(required=True)
     pais = fields.String(required=True)
+    puntaje = fields.Float(required=True)
 
     @post_load
     def make_equipo(self, data, **kwargs):
-        return  EquipoModels(**data)
-
+        return EquipoModel(**data)

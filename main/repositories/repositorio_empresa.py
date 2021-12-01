@@ -1,15 +1,15 @@
 from flask.scaffold import F
 from .. import db
-from main.models import EmpresaModels
+from main.models import EmpresaModel
 from .repositorio_base import Create, Read, Update, Delete
 
 
 class EmpresaRepositorio(Create, Read, Update, Delete):
     def __init__(self):
-        self.__modelo = EmpresaModels
+        self.__modelo = EmpresaModel
 
     def find_all(self):
-        objetos = db.session.query(self.__modelo).filter(self.__modelo.__activado == True).all()
+        objetos = db.session.query(self.__modelo).filter(self.__modelo.activado == True).all()
         return objetos
 
     def find_one(self, id):

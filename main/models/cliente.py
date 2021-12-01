@@ -3,18 +3,16 @@ from sqlalchemy.ext.hybrid import hybrid_property
 
 
 class Cliente(db.Model):
-    __tablename__ = 'clientes'
+    __tablename__ = "clientes"
     __id = db.Column('id', db.Integer, primary_key=True)
-    __nombre = db.Column('nombre', db.String(100), nullable=False)
-    __apellido = db.Column('apellido', db.String(100), nullable=False)
+    __apellido = db.Column('apellido', db.String(50), nullable=False)
+    __nombre = db.Column('nombre', db.String(50), nullable=False)
     __email = db.Column('email', db.String(120), nullable=False)
     __activado = db.Column('activado', db.Boolean, nullable=False)
 
 
-
     def __repr__(self):
-        return '<Cliente: %r %r %r >' % (self.__nombre, self.__apellido, self.__email)
-
+        return '<Cliente: %r %r>' % (self.__id, self.__email)
 
     @hybrid_property
     def id(self):
@@ -28,20 +26,6 @@ class Cliente(db.Model):
     def id(self):
         del self.__id
 
-
-    @hybrid_property
-
-    def nombre(self):
-        return self.__nombre
-
-    @nombre.setter
-    def nombre(self, nombre):
-        self.__nombre = nombre
-
-    @nombre.deleter
-    def nombre(self):
-        del self.__nombre
-
     @hybrid_property
     def apellido(self):
         return self.__apellido
@@ -54,6 +38,17 @@ class Cliente(db.Model):
     def apellido(self):
         del self.__apellido
 
+    @hybrid_property
+    def nombre(self):
+        return self.__nombre
+
+    @nombre.setter
+    def nombre(self, nombre):
+        self.__nombre = nombre
+
+    @nombre.deleter
+    def nombre(self):
+        del self.__nombre
 
     @hybrid_property
     def email(self):

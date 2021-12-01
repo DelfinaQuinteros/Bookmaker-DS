@@ -17,13 +17,23 @@ class Equipo {
     - nombre
     - escudo
     - pais
+    - puntaje
 }
 
 
 class Apuesta {
     - id
+    - fecha
     - monto 
     - monto_minimo
+    - ganador
+}
+
+class Cuota {
+    - id
+    - probabilidad_local
+    - probabilidad_empate
+    - probabilidad_visitante
 }
 
 class Partido {
@@ -31,17 +41,20 @@ class Partido {
     - fecha
     - equipo_local
     - equipo_visitante
-    
+    - finalizado
+    - ganador
+    - goles_local
+    - goles_visitante
 }
 
-Partido *-- Equipo: equipo_local
-Partido *-- Equipo: equipo_visitante
-Cliente --> Apuesta: Realiza apuesta
+Partido --* Equipo: equipo local
+Partido --* Equipo: equipo visitante
+
+Cliente ---> Apuesta: realiza apuesta
 Cliente --|> Model
 Empresa --|> Model
 Equipo --|> Model
 Partido --|> Model
-Apuesta --> Partido: Se realiza sobre
 
-
+Apuesta --> Partido: se realiza sobre
 @enduml

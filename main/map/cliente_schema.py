@@ -1,14 +1,14 @@
 from marshmallow import Schema, fields, validate, post_load
-from main.models import ClienteModels
+from main.models import ClienteModel
 
 
-class Cliente_Schema(Schema):
-    id = fields.Integer(dump_only=True)
-    nombre = fields.String(required=True)
+class ClienteSchema(Schema):
+    id = fields.Int(dump_only=True)
     apellido = fields.String(required=True)
+    nombre = fields.String(required=True)
     email = fields.String(required=True, validate=validate.Email())
+    activado = fields.Boolean(required=True)
 
     @post_load
     def make_cliente(self, data, **kwargs):
-        return  ClienteModels(**data)
-
+        return ClienteModel(**data)

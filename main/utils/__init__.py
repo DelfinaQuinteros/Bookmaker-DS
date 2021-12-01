@@ -1,1 +1,1 @@
-from .logger import LoggerFactoryImpl as LoggerFactoryImpl
+from .logger import LoggerFactoryImpl as Logger

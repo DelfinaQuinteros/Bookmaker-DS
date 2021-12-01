@@ -1,6 +1,4 @@
 @startuml
-'https://plantuml.com/use-case-diagram
-
 
 Cliente --> (Inicio con próximos partidos)
 Cliente --> (Sección de apuestas)

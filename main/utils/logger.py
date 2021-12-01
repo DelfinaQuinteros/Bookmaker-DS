@@ -7,19 +7,19 @@ init(autoreset=True)
 
 class Logger(ABC):
     @abstractmethod
-    def info(self, mensaje, objeto):
+    def info(self, mensaje, valor):
         pass
 
     @abstractmethod
-    def warning(self, mensaje, objeto):
+    def warning(self, mensaje, valor):
         pass
 
     @abstractmethod
-    def error(self, mensaje, objeto):
+    def error(self, mensaje, valor):
         pass
 
     @abstractmethod
-    def debug(self, mensaje, objeto):
+    def debug(self, mensaje, valor):
         pass
 
 
@@ -30,73 +30,72 @@ class LoggerFactory(ABC):
 
 
 class LoggerFactoryImpl(LoggerFactory):
-
     def getLogger(self, tipo):
-        # f file
-        # c consola
         diccionario = {
-            "c": LoggerConsola(),
-            "f": LoggerFile(),
-            "e": LoggerEmail()
+            'c': LoggerConsole(),
+            'f': LoggerFile(),
+            'e': LoggerEmail()
         }
         return diccionario[tipo]
 
 
-class LoggerConsola(Logger):
-    def info(self, mensaje, objeto):
-        print(datetime.now(), Fore.BLUE + "[INFO]", mensaje, objeto)
+class LoggerConsole(Logger):
+    def info(self, mensaje, valor):
+        print(datetime.now(), Fore.CYAN+" INFO: ", mensaje, valor)
 
-    def warning(self, mensaje, objeto):
-        print(datetime.now(), Fore.YELLOW + "[WARN]", mensaje, objeto)
+    def warning(self, mensaje, valor):
+        print(datetime.now(), Fore.YELLOW+" WARN: ", mensaje, valor)
 
-    def error(self, mensaje, objeto):
-        print(datetime.now(), Fore.RED + "[ERROR]", mensaje, objeto)
+    def error(self, mensaje, valor):
+        print(datetime.now(), Fore.RED+" ERR:  ", mensaje, valor)
 
-    def debug(self, mensaje, objeto):
-        print(datetime.now(), Fore.MAGENTA + "[DEB]", mensaje, objeto)
+    def debug(self, mensaje, valor):
+        print(datetime.now(), Fore.GREEN+" DEB:  ", mensaje, valor)
 
 
 class LoggerFile(Logger):
-    def info(self, mensaje, objeto):
+    def info(self, mensaje, valor):
         with open("file_log.txt", "a") as file:
-            dato = (str(datetime.now()), 'INFO', mensaje + " " + str(objeto), "\n")
-            file.writelines(dato)
+            out = str(datetime.now()) + " INFO: " + mensaje + " " + str(valor) + "\n"
+            file.writelines(out)
 
-    def warning(self, mensaje, objeto):
+    def warning(self, mensaje, valor):
         with open("file_log.txt", "a") as file:
-            dato = (str(datetime.now()), 'WARN', mensaje + " " + str(objeto), "\n")
-            file.writelines(dato)
+            out = str(datetime.now()) + " WARN: " + mensaje + " " + str(valor) + "\n"
+            file.writelines(out)
 
-    def error(self, mensaje, objeto):
+    def error(self, mensaje, valor):
         with open("file_log.txt", "a") as file:
-            dato = (str(datetime.now()), 'ERROR', mensaje + " " + str(objeto), "\n")
-            file.writelines(dato)
+            out = str(datetime.now()) + " ERR:  " + mensaje + " " + str(valor) + "\n"
+            file.writelines(out)
 
-    def debug(self, mensaje, objeto):
+    def debug(self, mensaje, valor):
         with open("file_log.txt", "a") as file:
-            dato = (str(datetime.now()), 'DEB', mensaje + " " + str(objeto), "\n")
-            file.writelines(str(dato))
+            out = str(datetime.now()) + " DEB:  " + mensaje + " " + str(valor) + "\n"
+            file.writelines(out)
 
 
 class LoggerEmail(Logger):
+    def info(self, mensaje, valor):
+        print("Enviando email info")
 
-    def info(self, mensaje, objeto):
-        print("Enviando email")
+    def warning(self, mensaje, valor):
+        print("Enviando email warning")
 
-    def warning(self, mensaje, objeto):
-        print("se encontro un warning")
+    def error(self, mensaje, valor):
+        print("Enviando email error")
 
-    def error(self, mensaje, objeto):
-        print("Se encontro un error enviando el email")
-
-    def debug(self, mensaje, objeto):
-        print("debug")
+    def debug(self, mensaje, valor):
+        print("Enviando email debug")
 
 
 if __name__ == "__main__":
-    type_log = input("Ingrese la letra 'c' para salida por consola, 'f' para el archivo o 'e' para email: ")
+
+    type_log = input("Ingrese la letra 'c' para salida por consola, la letra 'f' ara salida por archivo log o 'e' "
+                     "para salida por email: ")
+
     logger = LoggerFactoryImpl().getLogger(tipo=type_log)
-    logger.info("valor de variable", 223)
-    logger.warning("valor de variable", 223)
-    logger.error("valor de variable", 223)
-    logger.debug("valor de variable", 223)
+    logger.info("Valor de variable", 1234)
+    logger.warning("Valor de warning", 2345)
+    logger.error("Valor de error", 7896)
+    logger.debug("Valor de debug", 9999)

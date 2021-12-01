@@ -1,12 +1,12 @@
 from flask.scaffold import F
 from .. import db
-from main.models import ClienteModels
+from main.models import ClienteModel
 from .repositorio_base import Create, Read, Update, Delete
 
 
 class ClienteRepositorio(Create, Read, Update, Delete):
     def __init__(self):
-        self.__modelo = ClienteModels
+        self.__modelo = ClienteModel
 
     def find_all(self):
         objetos = db.session.query(self.__modelo).filter(self.modelo.__activado == True).all()

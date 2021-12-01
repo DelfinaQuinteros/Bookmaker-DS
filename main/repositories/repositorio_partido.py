@@ -1,16 +1,17 @@
-import logging
 from flask.scaffold import F
 from .. import db
-from main.models import PartidoModels
+from main.models import PartidoModel
 from .repositorio_base import Create, Read, Update, Delete
-from main.utils import logger
+#from .main.utils import Logger
+import logging
+
 
 logger = logging.getLogger(__name__)
 
 
 class PartidoRepositorio(Create, Read, Update, Delete):
     def __init__(self):
-        self.__modelo = PartidoModels
+        self.__modelo = PartidoModel
 
     def find_all(self):
         objetos = db.session.query(self.__modelo).all()
@@ -30,7 +31,7 @@ class PartidoRepositorio(Create, Read, Update, Delete):
             objeto = db.session.query(self.__modelo).get_or_404(id)
             db.session.delete(objeto)
             db.session.commit()
-        except Exception as error:
+        except Exception as err:
             logger.error("No se pudo borrar %s", id)
             db.session.rollback()
 

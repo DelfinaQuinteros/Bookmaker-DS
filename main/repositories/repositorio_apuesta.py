@@ -1,12 +1,12 @@
 from flask.scaffold import F
 from .. import db
-from main.models import ApuestaModels
+from main.models import ApuestaModel
 from .repositorio_base import Create, Read
 
 
 class ApuestaRepositorio(Create, Read):
     def __init__(self):
-        self.__modelo = ApuestaModels
+        self.__modelo = ApuestaModel
 
     def find_all(self):
         objetos = db.session.query(self.__modelo).all()

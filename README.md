@@ -1,15 +1,20 @@
-#**Bookmaker DS**
+# Bookmaker DS
 
-Repositorio destinado a Bookmaker-DS
+Repositorio para la materia de Diseño de Sistemas
 
-#Instalacion
+## Instalación
 
-Crear un archivo .env a partir de .env-example
+```
+git clone https://gitlab.com/lucas.ollarce/bookmaker-ds.git
+cd bookmaker-ds
+./install.sh
+```
 
-setear configuracion
+## Ejecución
 
-Ejecutar install.sh
+Cree su archivo de ejecución `.env` a partir del `.env-example` y luego ejecute
 
-#Para correr el servidor
+```
+./boot.sh
+```
 
-Ejecutar boot.sh
