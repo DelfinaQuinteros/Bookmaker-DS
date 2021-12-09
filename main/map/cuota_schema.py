@@ -7,7 +7,7 @@ class CuotaSchema(Schema):
     probabilidad_local = fields.Float(required=True)
     probabilidad_empate = fields.Float(required=True)
     probabilidad_visitante = fields.Float(required=True)
-    partido_id = fields.Float(required=True)
+    # partido_id = fields.Float(required=True)
 
     @post_load
     def make_equipo(self, data, **kwargs):

@@ -4,12 +4,12 @@ from .command import Command, Tarea
 from main.map import ApuestaSchema
 from flask import request
 
-
 apuesta_schema = ApuestaSchema()
 
+
 class ApuestaService:
-    
-    def agregar_apuesta(self):       
+
+    def agregar_apuesta(self):
         apuesta = apuesta_schema.load(request.get_json())
         if self.registrar_apuestas(apuesta):
             db.session.add(apuesta)
@@ -18,11 +18,9 @@ class ApuestaService:
             return apuesta
         return False
 
-
     def obtener_apuestas(self):
         apuestas = db.session.query(ApuestaModel).all()
         return apuestas
-    
 
     def registrar_apuestas(self, apuesta):
         tarea = Tarea()
@@ -39,7 +37,7 @@ class ValidarPartido(Command):
 
     @staticmethod
     def execute(param):
-        #lógica para validar apuesta del partido
+        # lógica para validar apuesta del partido
         partido = db.session.query(PartidoModel).get_or_404(param)
         if partido is not None:
             return True
@@ -47,7 +45,7 @@ class ValidarPartido(Command):
 
 class ValidarMontos(Command):
     def execute(self, param):
-        #lógica para validar montos de apuesta
+        # lógica para validar montos de apuesta
         pass
 
 
@@ -60,5 +58,5 @@ class GuardarApuesta(Command):
 
 class EnviarMail(Command):
     def execute(self, param):
-        #lógica para enviar mail de confirmación de apuesta
+        # lógica para enviar mail de confirmación de apuesta
         pass

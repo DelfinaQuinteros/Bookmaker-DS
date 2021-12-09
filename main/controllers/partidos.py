@@ -1,10 +1,14 @@
 from .. import db
 from flask_restful import Resource
 from main.models import PartidoModel
-from flask import request, jsonify
+from flask import request
+from main.repositories import PartidoRepositorio
+from main.services import PartidoService
 from main.map import PartidoSchema
 
 partido_schema = PartidoSchema()
+partido_repositorio = PartidoRepositorio()
+
 
 class Partido(Resource):
     def get(self, id):
@@ -35,6 +39,7 @@ class Partido(Resource):
         except:
             return '', 404
 
+
 class Partidos(Resource):
 
     def get(self):
@@ -42,7 +47,6 @@ class Partidos(Resource):
         return partido_schema.dump(partidos, many=True)
 
     def post(self):
+        services = PartidoService()
         partido = partido_schema.load(request.get_json())
-        db.session.add(partido)
-        db.session.commit()
-        return partido_schema.dump(partido), 201
+        return services.agregar_partido(partido)

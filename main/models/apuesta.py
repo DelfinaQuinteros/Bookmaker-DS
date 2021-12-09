@@ -8,12 +8,14 @@ class Apuesta(db.Model):
     __id = db.Column('id', db.Integer, primary_key=True, nullable=False)
     __fecha = db.Column('fecha', db.DateTime, nullable=False, default=datetime.now())
     __monto = db.Column('monto', db.Float('equipo.id'), nullable=False)
-    __equipo_ganador = db.Column('equipo_ganador', db.ForeignKey('equipos.id'), nullable=False)
+    __equipo_ganador_id = db.Column('equipo_ganador_id', db.ForeignKey('equipos.id'), nullable=False)
     __partido = db.Column('partido', db.Integer, db.ForeignKey('partidos.id'), nullable=False)
     __cliente_id = db.Column('cliente', db.Integer, db.ForeignKey('clientes.id'), nullable=False)
+    equipo_ganador = db.relationship('Equipo', back_populates='apuestas')
 
     def __repr__(self):
-        return '<Apuesta: %r %r %r %r %r %r>' % (self.__id, self.__fecha, self.__monto, self.__equipo_ganador, self.partido, self.cliente_id)
+        return '<Apuesta: %r %r %r %r %r %r>' % (
+            self.__id, self.__fecha, self.__monto, self.__equipo_ganador, self.__partido, self.__cliente_id)
 
     @hybrid_property
     def id(self):
@@ -52,16 +54,16 @@ class Apuesta(db.Model):
         del self.__monto
 
     @hybrid_property
-    def equipo_ganador(self):
-        return self.__equipo_ganador
+    def equipo_ganador_id(self):
+        return self.__equipo_ganador_id
 
-    @equipo_ganador.setter
-    def equipo_ganador(self, equipo_ganador):
-        self.__equipo_ganador = equipo_ganador
+    @equipo_ganador_id.setter
+    def equipo_ganador_id(self, equipo_ganador_id):
+        self.__equipo_ganador_id = equipo_ganador_id
 
-    @equipo_ganador.deleter
-    def equipo_ganador(self):
-        del self.__equipo_ganador
+    @equipo_ganador_id.deleter
+    def equipo_ganador_id(self):
+        del self.__equipo_ganador_id
 
     @hybrid_property
     def partido(self):
@@ -85,34 +87,4 @@ class Apuesta(db.Model):
 
     @cliente_id.deleter
     def cliente_id(self):
-        del self.__cliente_id    
-
-"""
-    def to_json(self):
-        apuesta_json = {
-            'id': self.__id,
-            'fecha': str(self.__fecha),
-            'monto': self.__monto,
-            'equipo_ganador': self.__equipo_ganador,
-            'partido': self.__partido,
-            'cliente_id': self.cliente_id
-        }
-        return apuesta_json
-
-    @staticmethod
-    def from_json(apuesta_json):
-        id = apuesta_json.get('id')
-        fecha = apuesta_json.get('fecha')
-        monto = apuesta_json.get('monto')
-        equipo_ganador = apuesta_json.get('equipo_ganador')
-        partido = apuesta_json.get('partido')
-        cliente_id = apuesta_json.get('cliente_id')
-        return Apuesta(
-            id=id,
-            fecha=fecha,
-            monto=monto,
-            equipo_ganador=equipo_ganador,
-            partido=partido,
-            cliente_id=cliente_id
-        )
-"""        
+        del self.__cliente_id

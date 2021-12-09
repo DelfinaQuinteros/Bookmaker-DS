@@ -3,10 +3,12 @@ from flask import request
 from .. import db
 from main.models import EquipoModel
 from main.map import EquipoSchema
+from main.services import EquipoService
 import logging
 
 
 equipo_schema = EquipoSchema()
+equipo_service = EquipoService()
 logger = logging.getLogger(__name__)
 
 

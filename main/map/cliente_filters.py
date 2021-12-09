@@ -1,14 +1,15 @@
+from main.models.cliente import Cliente
 from main.models import ClienteModel
 
 
 class ClienteFiltros():
     def __init__(self, cliente):
         self.__cliente = cliente
-        self.__dict_filters = {"id": self.__filtro_por_id,
-                            "nombre": self.__filtro_por_nombre,
-                            "apellido": self.__filtro_por_apellido,
-                            "email": self.__filtro_por_email
-                            }
+        self.__filters = {"id": self.__filtro_por_id,
+                          "nombre": self.__filtro_por_nombre,
+                          "apellido": self.__filtro_por_apellido,
+                          "email": self.__filtro_por_email
+                          }
 
     def __filtro_por_id(self, value):
         return self.__cliente.filter(ClienteModel.id == int(value))
@@ -23,4 +24,4 @@ class ClienteFiltros():
         return self.__cliente.filter(ClienteModel.email.like('%' + value + '%'))
 
     def aplicar_filtro(self, key, value):
-        return self.__dict_filters[key](value)
+        return self.__filters[key](value)

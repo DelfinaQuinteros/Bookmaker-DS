@@ -6,12 +6,12 @@ class Partido(db.Model):
     __tablename__ = "partidos"
     __id = db.Column('id', db.Integer, primary_key=True)
     __fecha = db.Column('fecha', db.DateTime, nullable=False)
-    __equipo_local = db.Column('equipo_local', db.ForeignKey('equipos.id'), nullable=False)
-    __equipo_visitante = db.Column('equipo_visitante', db.ForeignKey('equipos.id'), nullable=False)
+    __equipo_local_id = db.Column('equipo_local', db.ForeignKey('equipos.id'), nullable=False)
+    __equipo_visitante_id = db.Column('equipo_visitante', db.ForeignKey('equipos.id'), nullable=False)
     __finalizado = db.Column('finalizado', db.Boolean)
     __ganador = db.Column('ganador', db.String(50))
-    __goles_local = db.Column('goles_local', db.Integer, nullable=False)
-    __goles_visitante = db.Column('goles_visitante', db.Integer, nullable=False)
+    # __goles_local = db.Column('goles_local', db.Integer, nullable=False)
+    # __goles_visitante = db.Column('goles_visitante', db.Integer, nullable=False)
     cuota = db.relationship('Cuota', back_populates='partido', uselist=False)
 
     def __repr__(self):
@@ -42,28 +42,28 @@ class Partido(db.Model):
         del self.__fecha
 
     @hybrid_property
-    def equipo_local(self):
-        return self.__equipo_local
+    def equipo_local_id(self):
+        return self.__equipo_local_id
 
-    @equipo_local.setter
-    def equipo_local(self, equipo_local):
-        self.__equipo_local = equipo_local
+    @equipo_local_id.setter
+    def equipo_local_id(self, equipo_local_id):
+        self.__equipo_local_id = equipo_local_id
 
-    @equipo_local.deleter
-    def equipo_local(self):
-        del self.__equipo_local
+    @equipo_local_id.deleter
+    def equipo_local_id(self):
+        del self.__equipo_local_id
 
     @hybrid_property
-    def equipo_visitante(self):
-        return self.__equipo_visitante
+    def equipo_visitante_id(self):
+        return self.__equipo_visitante_id
 
-    @equipo_visitante.setter
-    def equipo_visitante(self, equipo_visitante):
-        self.__equipo_visitante = equipo_visitante
+    @equipo_visitante_id.setter
+    def equipo_visitante_id(self, equipo_visitante_id):
+        self.__equipo_visitante_id = equipo_visitante_id
 
-    @equipo_visitante.deleter
-    def equipo_visitante(self):
-        del self.__equipo_visitante
+    @equipo_visitante_id.deleter
+    def equipo_visitante_id(self):
+        del self.__equipo_visitante_id
 
     @hybrid_property
     def finalizado(self):
@@ -89,7 +89,7 @@ class Partido(db.Model):
     def ganador(self):
         del self.__ganador
 
-    @hybrid_property
+    """    @hybrid_property
     def goles_local(self):
         return self.__goles_local
 
@@ -111,4 +111,4 @@ class Partido(db.Model):
 
     @goles_visitante.deleter
     def goles_visitante(self):
-        del self.__goles_visitante
+        del self.__goles_visitante"""
