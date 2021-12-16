@@ -4,8 +4,7 @@ Repositorio para la materia de Diseño de Sistemas
 
 ## Instalación
 
-```
-git clone https://gitlab.com/lucas.ollarce/bookmaker-ds.git
+``
 cd bookmaker-ds
 ./install.sh
 ```
